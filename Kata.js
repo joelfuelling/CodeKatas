@@ -172,13 +172,21 @@ let alphaArray = [
 ];
 
 const newArray = [...alphaArray];
-const [a, ...x] = newArray;
-
+newArray.toString().replaceAll(",", "");
+// console.log(x);
 let matrixArray = [];
 matrixArray.push(newArray);
-console.log(matrixArray);
-for (let i = 0; i < newArray.length; i++) {
-  matrixArray.push(a);
+for (let j = 0; j < newArray.length; j++) {
+  let [a, ...x] = newArray;
+  x.push(a[j]);
+  x = x.toString().replaceAll(",", "");
+  matrixArray.push(x);
+  for (let i = 0; i < 1; i++) {
+    let [aa, ...xx] = x;
+    xx.push(aa);
+    xx = xx.toString().replaceAll(",", "");
+    matrixArray.push(xx);
+  }
   console.log(matrixArray);
 }
 // Both parties need to decide on a secret keyword. This keyword is not written down anywhere, but memorized.
