@@ -107,7 +107,7 @@ function wave2(str) {
 console.log(wave2("hell o"));
 //% Output:
 // HELL O
-*/
+
 //* Kata03: Wonderland-clojure-katas
 
 // This Alphabet Cipher involves alphabet substitution using a keyword.
@@ -171,9 +171,9 @@ let alphaArray = [
   "z",
 ];
 
-const newArray = [...alphaArray];
-newArray.toString().replaceAll(",", "");
-// console.log(x);
+let newArray = [...alphaArray];
+newArray = newArray.toString().replaceAll(",", "");
+
 let matrixArray = [];
 matrixArray.push(newArray);
 for (let j = 0; j < newArray.length; j++) {
@@ -206,3 +206,69 @@ for (let j = 0; j < newArray.length; j++) {
 // The encoded message is now egsgqwtahuiljgs
 
 // To decode, the person would use the secret keyword and do the opposite.
+*/
+
+//* Kata04: Sorting It Out
+
+// - Clojure Katas
+// There are times when whipping up a sort of our own can outperform these generic routines. Our challenge this week is to implement a couple of different sorts. (However, at the risk of giving the game away, these sorts both have something in common).
+//* Sorting Balls
+
+let list = [1, 10, 9, 8, 3, 6];
+function sortIt(arr) {
+  for (let i = 1; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      let temp = arr[i];
+      if (arr[i] < arr[j]) {
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+    }
+  }
+  return arr;
+}
+console.log(sortIt(list));
+
+const lottoBalls = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
+  41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
+];
+const daisyMaePicks = 10;
+const ballPicks = [];
+function ballSelect(balls) {
+  let newLotto = [...balls];
+  for (let i = 0; i < daisyMaePicks; i++) {
+    const ballPull = Math.floor(Math.random() * newLotto.length);
+    ballPicks.push(ballPull);
+  }
+  sortIt(ballPicks);
+  console.log(ballPicks);
+  return ballPicks;
+}
+
+ballSelect(lottoBalls);
+
+//* Sorting Characters
+// See the list of winning numbers in sorted order as soon as possible.
+
+let string = "The quick brown fox jumped over the lazy dog";
+
+function stringSort(str) {
+  let newStr = str.replaceAll(" ", "").toLowerCase();
+  let funcArray = Array.from(newStr);
+  console.log(funcArray);
+  for (let i = 0; i < funcArray.length; i++) {
+    for (let j = i + 1; j < funcArray.length; j++) {
+      if (funcArray[i] > funcArray[j]) {
+        temp = funcArray[i];
+        funcArray[i] = funcArray[j];
+        funcArray[j] = temp;
+      }
+    }
+  }
+  let value = funcArray.join("").toLowerCase();
+  console.log(value);
+  return value;
+}
+stringSort(string);
