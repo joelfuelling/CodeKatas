@@ -206,7 +206,7 @@ for (let j = 0; j < newArray.length; j++) {
 // The encoded message is now egsgqwtahuiljgs
 
 // To decode, the person would use the secret keyword and do the opposite.
-*/
+
 
 //* Kata04: Sorting It Out
 
@@ -272,3 +272,106 @@ function stringSort(str) {
   return value;
 }
 stringSort(string);
+
+//* Kata 05: Array Intersection and Fibonacci sequence.
+// Array Intersection: Write a function that takes in two arrays as input and returns a new array containing only the elements that are present in both arrays, without any duplicates.
+
+//* Array Intersection
+function intersect(arr1, arr2) {
+  let newArr1 = [...arr1];
+  let newArr2 = [...arr2];
+  let dupArray = [];
+  for (let i = 0; i < newArr1.length; i++) {
+    for (let j = 0; j < newArr2.length; j++) {
+      newArr1[i] === newArr2[j]
+        ? dupArray.push(newArr1[i]) && dupArray.push(newArr2[j])
+        : dupArray.push();
+    }
+  }
+  dupArray = new Set(dupArray);
+  console.log(dupArray);
+  const [...returnArray] = [...dupArray];
+  console.log(returnArray);
+}
+const array1 = [12, 24, 23, 34, 12, 22, 12];
+const array2 = [12, 24, 533, 66, 23, 22, 1, 56];
+
+intersect(array1, array2);
+
+//* Anagram Checker
+// Write a function that takes in two strings and returns true if they are anagrams, and false otherwise. Anagrams are words or phrases formed by rearranging the letters of another word or phrase.
+
+let str1 = "laps";
+let str2 = "pals";
+
+function checkAnaGrama(str1, str2) {
+  let str1check = str1.split("").sort().join("");
+  let str2check = str2.split("").sort().join("");
+  if (str1check.length !== str2check.length)
+    console.log(`${str1check} is not the same length as ${str2check}`);
+  else if (str1check === str2check)
+    console.log(`${str1check} and ${str2check} are an Anagram`);
+  else if (str1check !== str2check) return false;
+}
+
+checkAnaGrama(str1, str2);
+
+//* Anagram check simplified.
+
+function palCheck(words) {
+  const arr1 = Array.from(words);
+  const rev = arr1.reverse().join("");
+  if (rev === words) return true;
+}
+
+console.log(palCheck("bob"));
+*/
+
+//* Kata 06:
+
+//Reverse Words: Write a function that takes a sentence as input and returns a new sentence where the order of the words is reversed. For example, if the input is "Hello World", the output should be "World Hello".
+
+const wordStr = "Reverse this string";
+
+function reverseMe(str) {
+  str = str.split(" ");
+  let reversedWord = [];
+  for (let i = str.length - 1; i > -1; i--) {
+    reversedWord.push(str[i]);
+  }
+  reversedWord = reversedWord.join(" ");
+  console.log(reversedWord);
+}
+reverseMe(wordStr);
+
+// Prime Number Checker: Write a function that takes a number as input and returns true if it is a prime number, and false otherwise. A prime number is a number greater than 1 that has no positive divisors other than 1 and itself.
+
+function checkIfPrimeNum(num) {
+  if (num <= 1) return false;
+  for (let i = 2; i < num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(checkIfPrimeNum(111));
+
+// Object Key Capitalizer: Write a function that takes an object as input and returns a new object where all the keys are capitalized. The values of the keys should remain the same.
+
+const joelObj = {
+  fistName: "joel",
+  lastName: "fuelling",
+};
+
+function upperCaseKeys(obj) {
+  const returnObj = {};
+  const upperObj = Object.entries(obj);
+  for (let [key, value] of upperObj) {
+    key = key.toUpperCase();
+    returnObj[key] = value;
+  }
+  console.log(returnObj);
+}
+
+upperCaseKeys(joelObj);
