@@ -325,7 +325,7 @@ function palCheck(words) {
 }
 
 console.log(palCheck("bob"));
-*/
+
 
 //* Kata 06:
 
@@ -364,14 +364,75 @@ const joelObj = {
   lastName: "fuelling",
 };
 
+const newObj = Object.entries(joelObj);
+console.log(newObj);
+
 function upperCaseKeys(obj) {
   const returnObj = {};
   const upperObj = Object.entries(obj);
   for (let [key, value] of upperObj) {
     key = key.toUpperCase();
-    returnObj[key] = value;
+    returnObj[key] = value; //! HOW TO ADD K/V PAIR TO OBJECT
   }
   console.log(returnObj);
 }
 
 upperCaseKeys(joelObj);
+*/
+//* Kata 07:
+
+//! WHAT A DOOZY!
+//  Array Flattening: Write a function that takes an array with nested arrays and returns a new array with all the elements flattened into a single level. For example, if the input array is [1, [2, [3, 4], 5], 6], the output should be [1, 2, 3, 4, 5, 6].
+
+const testArray = [1, [2, [3, 4], 5], 6];
+console.log(testArray);
+
+function flattenedNestedArray(y) {
+  if (y === Array) {
+    let arr = [];
+    for (let i = 0; i < y.length; i++) {
+      if (Array.isArray(y[i])) {
+        arr = arr.concat(flattenedNestedArray(y[i]));
+      } else {
+        arr.push(y[i]);
+      }
+    }
+    return arr;
+  } else {
+    return [y];
+  }
+}
+console.log(flattenedNestedArray(testArray));
+
+// Missing Number: Write a function that takes an array of numbers from 1 to n (with one number missing) and returns the missing number. The array is not guaranteed to be in sorted order, and the missing number will always be between 1 and n.
+
+const testArr = [1, 2, 3, 5, 4, 8, 7, 9];
+
+function findMissingNo(arr) {
+  arr = arr.sort();
+  let arrWithAllNumbers = Array(arr[arr.length - 1])
+    .fill()
+    .map((v, i) => i + 1);
+  for (let i = 0; i < arrWithAllNumbers.length; i++) {
+    if (arr[i] !== arrWithAllNumbers[i]) return arr[i] - 1;
+  }
+}
+
+console.log(findMissingNo(testArr));
+
+const testArr1 = [1, 5, 7, 3, 9];
+
+function findMissingNumbers(arr) {
+  arr = arr.sort();
+  let missingNosArray = [];
+  let testArr = Array(arr[arr.length - 1])
+    .fill()
+    .map((v, i) => i + 1); // Creates and fills testArr with i + 1 for each index, up to the maximum index found by .sort(), 9.
+  console.log(testArr);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== testArr[i]) missingNosArray.push(arr[i] - 1);
+  }
+  return missingNosArray;
+}
+
+console.log(findMissingNumbers(testArr1));
