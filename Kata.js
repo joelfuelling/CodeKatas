@@ -436,3 +436,42 @@ function findMissingNumbers(arr) {
 }
 
 console.log(findMissingNumbers(testArr1));
+
+//* Kata 08:
+
+// Unique Characters: Write a function that takes a string as input and returns true if all the characters in the string are unique (i.e., no duplicate characters), and false otherwise. Ignore whitespace and consider the characters to be case-sensitive.
+
+// Easy Way using Set.
+function checkArrAgainstSet(str) {
+  const setCheck = new Set(str);
+  setCheck.size === str.length ? true : false;
+}
+checkArrAgainstSet("frisbee");
+
+function checkStrForUnique(str) {
+  const outputArr = [...str];
+  for (let i = 0; i < str.length; i++) {}
+}
+checkStrForUnique("test");
+// Sum of Digits: Write a function that takes a positive integer as input and returns the sum of its digits. For example, if the input is 123, the output should be 6 (1 + 2 + 3 = 6).
+
+function addEmUp(numb) {
+  let numStr = numb + "";
+  let addedUp = 0;
+  for (eachNum of numStr) {
+    addedUp += eachNum * 1;
+  }
+  console.log(addedUp);
+}
+
+addEmUp(1562);
+// Array Rotation: Write a function that takes an array and a number of positions to rotate as input. The function should rotate the elements of the array to the right by the given number of positions. For example, if the input array is [1, 2, 3, 4, 5] and the number of positions is 2, the output should be [4, 5, 1, 2, 3].
+
+function rotateArray(arr, amount) {
+  const returnArr = [];
+  for (let x of arr) {
+    returnArr.push(x);
+  }
+}
+let arr = [2, 4, 5, 6];
+console.log(rotateArray(arr, 3));
