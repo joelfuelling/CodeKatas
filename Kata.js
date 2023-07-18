@@ -207,7 +207,6 @@ for (let j = 0; j < newArray.length; j++) {
 
 // To decode, the person would use the secret keyword and do the opposite.
 
-
 //* Kata04: Sorting It Out
 
 // - Clojure Katas
@@ -326,7 +325,6 @@ function palCheck(words) {
 
 console.log(palCheck("bob"));
 
-
 //* Kata 06:
 
 //Reverse Words: Write a function that takes a sentence as input and returns a new sentence where the order of the words is reversed. For example, if the input is "Hello World", the output should be "World Hello".
@@ -378,7 +376,7 @@ function upperCaseKeys(obj) {
 }
 
 upperCaseKeys(joelObj);
-*/
+
 //* Kata 07:
 
 //! WHAT A DOOZY!
@@ -467,11 +465,94 @@ function addEmUp(numb) {
 addEmUp(1562);
 // Array Rotation: Write a function that takes an array and a number of positions to rotate as input. The function should rotate the elements of the array to the right by the given number of positions. For example, if the input array is [1, 2, 3, 4, 5] and the number of positions is 2, the output should be [4, 5, 1, 2, 3].
 
-function rotateArray(arr, amount) {
-  const returnArr = [];
-  for (let x of arr) {
-    returnArr.push(x);
+// function rotateArray(arr, amount) {
+//   const returnArr = [];
+//   for (let x of arr) {
+//     returnArr.push(x);
+//   }
+// }
+// let arr = [2, 4, 5, 6];
+// console.log(rotateArray(arr, 3));
+*/
+//* Kata 09:
+
+// Challenge 1: Array Manipulation
+// Write a function multiplyBy that takes an array of numbers and a multiplier, and returns a new array with each element multiplied by the given multiplier.
+const xArr = [1, 2, 3, 4];
+
+function multiplyBy(arr, x) {
+  const newArr = [];
+  for (const y of arr) {
+    newArr.push(y * x);
   }
+  return newArr;
 }
-let arr = [2, 4, 5, 6];
-console.log(rotateArray(arr, 3));
+
+console.log(multiplyBy(xArr, 2));
+
+// Challenge 2: Data Transformation
+// Write a function formatData that takes an array of objects representing students and transforms it into an array of strings in the format "<name> is from <country>". Each object in the input array has the properties name and country.
+
+// Transform an object into an array.
+
+const arr = [
+  {
+    firstName: "Joel",
+    country: "United States",
+  },
+  {
+    firstName: "John",
+    country: "United States",
+  },
+];
+
+const formatData = function (arr) {
+  arr.forEach(function (obj) {
+    const { firstName, country } = obj;
+    let outputStr = `"${firstName} is from ${country}"`;
+    return console.log(outputStr);
+  });
+};
+
+formatData(arr);
+
+// Challenge 3: Function Composition
+// Write a function compose that takes two functions as arguments and returns a new function that is the composition of the two functions. The returned function should apply the second function to the result of the first function.
+function fn1(a) {
+  return (a *= 2);
+}
+
+function fn2(b) {
+  return (b *= 2);
+}
+
+function bigOne(f1, f2) {
+  return function (x) {
+    return f2(f1(x));
+  };
+}
+console.log(bigOne(fn1, fn2)(5));
+
+bigOne(fn1, fn2);
+
+// Complete the method/function so that it converts dash/underscore delimited words into camel casing. The first word within the output should be capitalized only if the original word was capitalized (known as Upper Camel Case, also often referred to as Pascal case). The next words should be always capitalized.
+
+// Examples
+// "the-stealth-warrior" gets converted to "theStealthWarrior"
+
+// "The_Stealth_Warrior" gets converted to "TheStealthWarrior"
+
+// "The_Stealth-Warrior" gets converted to "TheStealthWarrior"
+
+const string = "the-stealth-warrior";
+
+function cnvrtString(str) {
+  let newStr = str.replace(/\-/g, " ").replace(/\_/g, " ").split(" ");
+  let firstWord = newStr[0];
+  console.log(newStr);
+  for (let i = 1; i < newStr.length; i++) {
+    firstWord += newStr[i][0].toUpperCase() + newStr[i].slice(1).toLowerCase();
+  }
+  return firstWord;
+}
+console.log(cnvrtString(string));
