@@ -556,3 +556,88 @@ function cnvrtString(str) {
   return firstWord;
 }
 console.log(cnvrtString(string));
+
+//* Kata 10:
+
+// Create a function taking a positive integer between 1 and 3999 (both included) as its parameter and returning a string containing the Roman Numeral representation of that integer.
+
+// Modern Roman numerals are written by expressing each digit separately starting with the left most digit and skipping any digit with a value of zero. In Roman numerals 1990 is rendered: 1000=M, 900=CM, 90=XC; resulting in MCMXC. 2008 is written as 2000=MM, 8=VIII; or MMVIII. 1666 uses each Roman symbol in descending order: MDCLXVI.
+
+// Example:
+
+// solution(1000); // should return 'M'
+// Help:
+
+// Symbol    Value
+// I          1
+// V          5
+// X          10
+// L          50
+// C          100
+// D          500
+// M          1,000
+// Remember that there can't be more than 3 identical symbols in a row.
+
+// How to get values based on 1-9 for each index.
+// Start from the back, looking for 0 at each index.
+// skip values of 0. if () continue.
+
+function romanConverter(num) {
+  let strNum = String(num);
+  if (strNum.length > 4) {
+    return "Number cannot be more than 4 digits!";
+  } else if (num > "3999") {
+    return "Number must be less than 4000";
+  }
+
+  let arrFromNum = [...strNum];
+  const numArr = [];
+  arrFromNum.forEach(function (index) {
+    numArr.push(index);
+  });
+  let firstIndex = numArr[0];
+  let secondIndex = numArr[1];
+  let thirdIndex = numArr[2];
+  let fourthIndex = numArr[3];
+
+  if (numArr.length === 4) {
+    firstIndex = "M".repeat(firstIndex);
+    if (secondIndex < 4) {
+      secondIndex = "C".repeat(secondIndex);
+    } else if (secondIndex === "4") {
+      secondIndex = "CD";
+    } else if (secondIndex === "5") {
+      secondIndex = "D";
+    } else if (secondIndex > "5" && secondIndex < "9") {
+      secondIndex = "D" + "L".repeat(secondIndex - 5);
+    } else {
+      secondIndex = "CM";
+    }
+    if (thirdIndex < 4) {
+      thirdIndex = "X".repeat(thirdIndex);
+    } else if (thirdIndex === "4") {
+      thirdIndex = "XL";
+    } else if (thirdIndex === "5") {
+      thirdIndex = "L";
+    } else if (thirdIndex > "5" && thirdIndex < "9") {
+      thirdIndex = "L" + "X".repeat(thirdIndex - 5);
+    } else {
+      thirdIndex = "XC";
+    }
+    if (fourthIndex < 4) {
+      fourthIndex = "I".repeat(fourthIndex);
+    } else if (fourthIndex === "4") {
+      fourthIndex = "IV";
+    } else if (fourthIndex === "5") {
+      fourthIndex = "V";
+    } else if (fourthIndex > "5" && fourthIndex < "9") {
+      fourthIndex = "V" + "I".repeat(fourthIndex - 5);
+    } else {
+      fourthIndex = "IX";
+    }
+    return firstIndex + secondIndex + thirdIndex + fourthIndex;
+  }
+}
+console.log(romanConverter(1111));
+
+//! Below is the codewars
