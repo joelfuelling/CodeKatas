@@ -640,4 +640,30 @@ function romanConverter(num) {
 }
 console.log(romanConverter(1111));
 
-//! Below is the codewars
+//! Below is the codewars hyper optimized version. I did not write this, but WHOA is it cool to see these pieces in play together.
+
+function solution(number) {
+  return [
+    { threshold: 1000, char: "M" },
+    { threshold: 900, char: "CM" },
+    { threshold: 500, char: "D" },
+    { threshold: 400, char: "CD" },
+    { threshold: 100, char: "C" },
+    { threshold: 90, char: "XC" },
+    { threshold: 50, char: "L" },
+    { threshold: 40, char: "XL" },
+    { threshold: 10, char: "X" },
+    { threshold: 9, char: "IX" },
+    { threshold: 5, char: "V" },
+    { threshold: 4, char: "IV" },
+    { threshold: 1, char: "I" },
+  ].reduce(function (prev, curr, idx, arr) {
+    while (number >= curr.threshold) {
+      number -= curr.threshold;
+      prev += curr.char;
+    }
+    return prev;
+  }, "");
+}
+
+console.log(solution(123));
