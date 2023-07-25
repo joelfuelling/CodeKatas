@@ -667,3 +667,34 @@ function solution(number) {
 }
 
 console.log(solution(123));
+
+//* Kata 10:
+
+// The marketing team is spending way too much time typing in hashtags.
+// Let's help them with our own Hashtag Generator!
+
+// Here's the deal:
+
+// It must start with a hashtag (#).
+// All words must have their first letter capitalized.
+// If the final result is longer than 140 chars it must return false.
+// If the input or the result is an empty string it must return false.
+// Examples
+// " Hello there thanks for trying my Kata"  =>  "#HelloThereThanksForTryingMyKata"
+// "    Hello     World   "                  =>  "#HelloWorld"
+// ""                                        =>  false
+
+function Kata10(str) {
+  let newStr = str;
+  newStr === "" ? false : true;
+  let wordArr = newStr.split(" ");
+  wordArr.forEach(function (word, i) {
+    wordArr[i] = word.charAt(0).toUpperCase() + word.slice(1);
+  });
+  wordArr = wordArr.join("");
+  wordArr = "#" + wordArr;
+  wordArr.length > 140 ? false : wordArr;
+  wordArr === "" ? false : wordArr;
+  return wordArr;
+}
+console.log(Kata10("Hello    there thanks for trying my Kata"));
